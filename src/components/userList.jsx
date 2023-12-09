@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function UsersList() {
   const [users, setUsers] = useState([]);
+  const [showUsers, setShowUsers] = useState(false);
 
   useEffect(() => {
     axios.get('https://65746764f941bda3f2afb4de.mockapi.io/userinfo/usersData')
@@ -14,14 +15,15 @@ function UsersList() {
 
   return (
     <div>
-      <h1>Users</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}>
-            {user.name} - {user.email}
-          </li>
-        ))}
-      </ul>
+      {showUsers && (
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>
+              {user.name} - {user.email}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
